@@ -3,11 +3,12 @@ import pickle
 
 app=Flask(__name__)
 #Load the model
-model=pickle.load(open('new_model.sav','rb'))
+model=pickle.load(open('new_model.pkl','rb'))
 
 @app.route('/')
 def home():
     result=''
+
     return render_template('index.html',**locals())
 
 @app.route('/predict',methods=['POST','GET'])
