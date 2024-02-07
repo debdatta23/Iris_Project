@@ -1,4 +1,4 @@
-from flask import Flask,render_Templates,request
+from flask import Flask,render_templates,request
 import pickle
 
 app=Flask(__name__)
@@ -9,7 +9,7 @@ model=pickle.load(open('new_model.pkl','rb'))
 def home():
     result=''
 
-    return render_Templates('index.html',**locals())
+    return render_templates('index.html',**locals())
 
 @app.route('/predict',methods=['POST','GET'])
 def predict():
@@ -18,7 +18,7 @@ def predict():
     petal_length=float(request.form['petal_length'])
     petal_width=float(request.form['petal_width'])
     result=model.predict([[sepal_length,sepal_width,petal_length,petal_width]])
-    return render_Templates('index.html',**locals())
+    return render_templates('index.html',**locals())
 
 if __name__ =='__main__':
     app.run(debug=True)
